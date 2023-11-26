@@ -14,7 +14,7 @@ Bonsai.SpikeGLX requires SpikeGLX's remote command server to be running. See the
 ### Streaming SpikeGLX Data into Bonsai
 Bonsai.SpikeGLX provides two ways to access data from SpikeGLX: 
 - **SpikeFetch** will fetch a fixed-size buffer of the latest data from SpikeGLX whenever it receives an input signal (or at a fixed interval if no input is provided).
-- **SpikeStream** will constinuously stream data in fixed-size buffers from SpikeGLX.
+- **SpikeStream** will continuously stream data in fixed-size buffers from SpikeGLX.
 
 The key difference between the two is that unlike SpikeFetch, SpikeStream will never skip or repeat elements in the buffers it emits. This is demonstrated below, where both marbles have been used to stream a 1Hz sinewave in 1s buffers. The output of SpikeFetch 'jumps' around as it misses or repeats samples, whereas the output of SpikeStream does not.
 
