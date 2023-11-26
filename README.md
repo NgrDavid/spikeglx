@@ -24,7 +24,7 @@ The key difference between the two is that unlike SpikeFetch, SpikeStream will n
 The **DigitalOutput** marble may be used to control digital outputs on an NI DAQ system in use by SpikeGLX.
 
 ### Controlling SpikeGLX Recordings
-SpikeGLX recordings may be started and stopped using the **TriggerRecording** marble, which can increment/decrement the gate and trigger values in SpikeGLX. However, as of SpikeGLX Release v20230815-phase30, adding a fixed period of saved data before and after triggering for context is not implemented for remote triggering. An alternative is to use TTL controlled start and stop, with a digital output (controlled using the **DigitalOutput** marble) used as the TTL signal. 
+SpikeGLX recordings may be started and stopped using the **TriggerRecording** marble, which can increment/decrement the gate and trigger values in SpikeGLX. However, as of SpikeGLX Release v20230815-phase30, adding a fixed period of saved data before and after triggering for context is not implemented for remote triggering. An alternative is to use TTL controlled start and stop, with a digital output (controlled using the **DigitalOutput** marble) as the TTL signal. 
 
 ## Authors
 Bonsai.SpikeGLX is developed by Jacob White of the [Fee Lab](https://feelaboratory.org/) at MIT.
