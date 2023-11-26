@@ -82,7 +82,7 @@ namespace Bonsai.SpikeGLX
         {
             return Observable.Create<Mat>((observer, cancellationToken) =>
             {
-                return Task.Factory.StartNew(async () =>
+                return Task.Factory.StartNew(() =>
                 {
                     // Establish connection to SpikeGLX command server.
                     using SpikeGLXDataStream connection = new(Host, Port, JS, IP, Channels);

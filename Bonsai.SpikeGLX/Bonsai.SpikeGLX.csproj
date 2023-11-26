@@ -2,19 +2,26 @@
 
   <PropertyGroup>
     <Title>Bonsai.SpikeGLX</Title>
-    <Description>A package for the Bonsai visual programming language.</Description>
+    <Description>A Bonsai package for interfacing with SpikeGLX</Description>
     <Authors>Jacob M. White</Authors>
     <Copyright>Copyright ©  2023</Copyright>
     <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
     <PackageProjectUrl></PackageProjectUrl>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageIcon></PackageIcon>
+    <PackageIcon>Bonsai.SpikeGLX.Logo.png</PackageIcon>
     <PackageOutputPath></PackageOutputPath>
-    <PackageTags>Bonsai Rx Bonsai.SpikeGLX</PackageTags>
+    <PackageTags>Bonsai; Rx; SpikeGLX; Reactive; Extensions; Neuroscience; Electrophysiology; Neuropixels</PackageTags>
     <TargetFramework>net472</TargetFramework>
     <Features>strict</Features>
-    <Version>0.1.0-alpha</Version>
+    <Version>0.1.0</Version>
 	<LangVersion>preview</LangVersion>
+	<ApplicationIcon>Resources\Bonsai.SpikeGLX.ico</ApplicationIcon>
+	<PlatformTarget>x64</PlatformTarget>
+	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<RepositoryUrl>https://github.com/FeeLab/Bonsai.SpikeGLX</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,9 +29,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Bonsai.SpikeGLX.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bonsai.Core" Version="2.8.1" />
     <PackageReference Include="OpenCV.Net" Version="3.4.2" />
     <PackageReference Include="PrecisionTimer.NET" Version="2.4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Bonsai.SpikeGLX.Logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
