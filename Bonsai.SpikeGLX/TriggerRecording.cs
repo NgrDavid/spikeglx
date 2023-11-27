@@ -9,7 +9,9 @@ namespace Bonsai.SpikeGLX
     /// the gate and trigger.
     /// </summary>
     [Combinator]
-    [Description("Remotely controls SpikeGLX recording by setting the gate and trigger.")]
+    [Description("Remotely controls SpikeGLX recording by setting the gate and trigger." + 
+        " NOTE: Gate and/or trigger must be set to \"Remote Controlled Start and Stop\"" +
+        " in SpikeGLX.")]
     [WorkflowElementCategory(ElementCategory.Sink)]
     public class TriggerRecording
     {
