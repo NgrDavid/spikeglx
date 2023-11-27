@@ -9,7 +9,7 @@ namespace Bonsai.SpikeGLX
     /// </summary>
     public class SpikeGLX : IDisposable
     {
-        private bool disposed = false;  // Whether unmanaged resources have been disposed
+        private bool disposed;  // Whether unmanaged resources have been disposed
         private readonly IntPtr hSglx;  // SpikeGLX connection handle
 
         /// <summary>
