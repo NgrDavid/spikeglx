@@ -25,9 +25,9 @@ The **DigitalOutput** marble may be used to control digital outputs on an NI DAQ
 
 ### Controlling SpikeGLX Recordings
 SpikeGLX recordings may be started and stopped using the **TriggerRecording** marble, which can increment/decrement the gate and trigger values in SpikeGLX. It takes a tuple of two integers, which modify the gate and trigger, respectively, in the following way:
-- 0: Reset the gate/trigger
-- 1: Set the gate/trigger
-- -1: Leave the gate/trigger unchanged
+- -1: No change
+- 0: Set low
+- 1: Increment and set high
 
 As of SpikeGLX Release v20230815-phase30, adding a fixed period of saved data before and after triggering for context is not implemented for remote triggering. An alternative is to use TTL controlled start and stop, with a digital output (controlled using the **DigitalOutput** marble) as the TTL signal. 
 
