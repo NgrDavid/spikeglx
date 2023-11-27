@@ -6,7 +6,7 @@
     <Authors>Jacob M. White</Authors>
     <Copyright>Copyright ©  2023</Copyright>
     <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/FeeLab/Bonsai.SpikeGLX</PackageProjectUrl>
     <PackageIcon>Bonsai.SpikeGLX.Logo.png</PackageIcon>
     <PackageOutputPath></PackageOutputPath>
     <PackageTags>Bonsai; Rx; SpikeGLX; Reactive; Extensions; Neuroscience; Electrophysiology; Neuropixels</PackageTags>
@@ -59,7 +59,11 @@
 		<None Include="..\SpikeGLX-CPP-SDK\*.dll" Pack="true" PackagePath="runtimes\win-x64\native" />
 	</ItemGroup>
 
-  <ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy /d /y &quot;$(ProjectDir)\..\SpikeGLX-CPP-SDK\*.dll&quot; &quot;$(TargetDir)&quot;" />
+	</Target>
+
+	<ItemGroup>
     <None Include="Images\Bonsai.SpikeGLX.Logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
