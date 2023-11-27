@@ -15,7 +15,7 @@ namespace Bonsai.SpikeGLX
         /// <summary>
         /// Gets or sets the IP address of the SpikeGLX command server
         /// </summary>
-        [Description("IP Address of the SpikeGLX command server.")]
+        [Description("IP address of the SpikeGLX command server.")]
         public string Host { get; set; } = "localhost";
 
         /// <summary>
@@ -46,6 +46,51 @@ namespace Bonsai.SpikeGLX
         {
             return Observable.Using<int, SpikeGLX>(() => new SpikeGLX(Host, Port),
                 connection => source.Do(input => connection.SetDigitalOut(input, Channels)));
+        }
+
+        /// <summary>
+        /// Set a digital output.
+        /// </summary>
+        /// <param name="source">
+        /// A sequence of <see cref="float"/>s, each representing a high (1.0) or low (0.0) digital state.
+        /// </param>
+        /// <returns>
+        /// An observable sequence that is identical to the <paramref name="source"/> sequence
+        /// but where there is an additional side effect of setting a digital output. 
+        /// </returns>
+        public IObservable<int> Process(IObservable<float> source)
+        {
+            return Process(source.Select(input => (int)input));
+        }
+
+        /// <summary>
+        /// Set a digital output.
+        /// </summary>
+        /// <param name="source">
+        /// A sequence of <see cref="float"/>s, each representing a high (1.0) or low (0.0) digital state.
+        /// </param>
+        /// <returns>
+        /// An observable sequence that is identical to the <paramref name="source"/> sequence
+        /// but where there is an additional side effect of setting a digital output. 
+        /// </returns>
+        public IObservable<int> Process(IObservable<double> source)
+        {
+            return Process(source.Select(input => (int)input));
+        }
+
+        /// <summary>
+        /// Set a digital output.
+        /// </summary>
+        /// <param name="source">
+        /// A sequence of <see cref="bool"/>s, each representing a high (true) or low (false) digital state.
+        /// </param>
+        /// <returns>
+        /// An observable sequence that is identical to the <paramref name="source"/> sequence
+        /// but where there is an additional side effect of setting a digital output. 
+        /// </returns>
+        public IObservable<int> Process(IObservable<bool> source)
+        {
+            return Process(source.Select(input => true ? 1 : 0));
         }
     }
 }

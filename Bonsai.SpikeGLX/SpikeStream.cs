@@ -25,7 +25,7 @@ namespace Bonsai.SpikeGLX
         /// <summary>
         /// Gets or sets the IP address of the SpikeGLX command server
         /// </summary>
-        [Description("IP Address of the SpikeGLX command server." + 
+        [Description("IP address of the SpikeGLX command server." + 
             "\"localhost\" evaluates to 127.0.0.1.")]
         public string Host { get; set; } = "localhost";
 
