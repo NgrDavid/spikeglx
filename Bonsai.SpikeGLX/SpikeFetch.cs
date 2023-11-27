@@ -32,7 +32,8 @@ namespace Bonsai.SpikeGLX
         /// <summary>
         /// Gets or sets the IP address of the SpikeGLX command server
         /// </summary>
-        [Description("IP Address of the SpikeGLX command server.")]
+        [Description("IP Address of the SpikeGLX command server." +
+            "\"localhost\" evaluates to 127.0.0.1.")]
         public string Host { get; set; } = "localhost";
 
         /// <summary>
@@ -45,13 +46,13 @@ namespace Bonsai.SpikeGLX
         /// Gets or sets the stream type (0: NIDAQ, 1: Onebox, 2: IMEC Probe).
         /// </summary>
         [Description("Stream type (0: NIDAQ, 1: Onebox, 2: IMEC Probe).")]
-        public int JS { get; set; } = 0;
+        public int StreamType { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets the substream (0 for NIDAQ, probe number for IMEC Probe).
         /// </summary>
         [Description("Substream (0 for NIDAQ, probe number for IMEC Probe).")]
-        public int IP { get; set; } = 0;
+        public int Substream { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets the array of channels to fetch data from.
@@ -130,7 +131,7 @@ namespace Bonsai.SpikeGLX
         public IObservable<Mat> Generate<TSource>(IObservable<TSource> source)
         {
             return Observable
-                .Using<Mat, SpikeGLXDataStream>(() => new SpikeGLXDataStream(Host, Port, JS, IP, Channels),
+                .Using<Mat, SpikeGLXDataStream>(() => new SpikeGLXDataStream(Host, Port, StreamType, Substream, Channels),
                     connection => source
                         .Select(input =>
                         {
