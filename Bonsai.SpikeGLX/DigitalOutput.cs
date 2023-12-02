@@ -90,7 +90,7 @@ namespace Bonsai.SpikeGLX
         /// </returns>
         public IObservable<int> Process(IObservable<bool> source)
         {
-            return Process(source.Select(input => true ? 1 : 0));
+            return Process(source.Select(input => input ? 1 : 0));
         }
     }
 }
