@@ -12,13 +12,13 @@ Bonsai.SpikeGLX is designed to allow integration of SpikeGLX recordings into Bon
 Bonsai.SpikeGLX requires SpikeGLX's remote command server to be running. See the [SpikeGLX-CPP-SDK Getting Started](https://github.com/billkarsh/SpikeGLX-CPP-SDK/blob/main/GettingStarted.txt) page for how to do this. Each Bonsai.SpikeGLX marble requires the IP address and port of the SpikeGLX command server to work. 
 
 ### Streaming SpikeGLX Data into Bonsai
-Bonsai.SpikeGLX provides two ways to access data from SpikeGLX: 
+Bonsai.SpikeGLX provides two ways to access data from SpikeGLX once an acquisition is running: 
 - **SpikeFetch** will fetch a fixed-size buffer of the latest data from SpikeGLX whenever it receives an input signal (or at a fixed interval if no input is provided).
 - **SpikeStream** will continuously stream data in fixed-size buffers from SpikeGLX.
 
 The key difference between the two is that unlike SpikeFetch, SpikeStream will never skip or repeat elements in the buffers it emits. This is demonstrated below, where both marbles have been used to stream a 1Hz sinewave in 1s buffers. The output of SpikeFetch 'jumps' around as it misses or repeats samples, whereas the output of SpikeStream does not.
 
-![SpikeFetch-vs-SpikeStream](https://github.com/FeeLab/Bonsai.SpikeGLX/assets/120409412/bf26abae-6f3a-4b91-9539-1f9dfccc19ba)
+![SpikeFetch-vs-SpikeStream-Timed](https://github.com/FeeLab/Bonsai.SpikeGLX/assets/120409412/24fda4b8-fa1c-4089-8dee-a33c9126eed7)
 
 ### Setting Digital Outputs
 The **DigitalOutput** marble may be used to control digital outputs on an NI DAQ system in use by SpikeGLX.
