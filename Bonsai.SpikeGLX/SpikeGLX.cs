@@ -26,6 +26,67 @@ namespace Bonsai.SpikeGLX
         }
 
         /// <summary>
+        /// Gets SpikeGLX run parameters.
+        /// </summary>
+        /// <returns>Array of "key:value" parameters.</returns>
+        /// <exception cref="SpikeGLXException"></exception>
+        public string[] GetParams()
+        {
+            // Request parameters
+            int ok = C_Sglx.c_sglx_getParams(out int nval, hSglx);
+            if (ok == 0) throw new SpikeGLXException(hSglx);
+
+            // Parse parameters into a string array
+            string[] output = new string[nval];
+            for (int i = 0; i < nval; i++)
+            {
+                output[i] = C_Sglx.cs_sglx_getstr(hSglx, i);
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Gets SpikeGLX parameters common to all IMEC probes.
+        /// </summary>
+        /// <returns>Array of "key:value" parameters.</returns>
+        /// <exception cref="SpikeGLXException"></exception>
+        public string[] GetParamsImecCommon()
+        {
+            // Request parameters
+            int ok = C_Sglx.c_sglx_getParamsImecCommon(out int nval, hSglx);
+            if (ok == 0) throw new SpikeGLXException(hSglx);
+
+            // Parse parameters into a string array
+            string[] output = new string[nval];
+            for (int i = 0; i < nval; i++)
+            {
+                output[i] = C_Sglx.cs_sglx_getstr(hSglx, i);
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Gets SpikeGLX parameters for a given IMEC probe.
+        /// </summary>
+        /// <param name="ip">Probe number.</param>
+        /// <returns></returns>
+        /// <exception cref="SpikeGLXException"></exception>
+        public string[] GetParamsImecProbe(int ip)
+        {
+            // Request parameters
+            int ok = C_Sglx.c_sglx_getParamsImecProbe(out int nval, hSglx, ip);
+            if (ok == 0) throw new SpikeGLXException(hSglx);
+
+            // Parse parameters into a string array
+            string[] output = new string[nval];
+            for (int i = 0; i < nval; i++)
+            {
+                output[i] = C_Sglx.cs_sglx_getstr(hSglx, i);
+            }
+            return output;
+        }
+            
+        /// <summary>
         /// Get the sample rate of a given data stream.
         /// </summary>
         /// <param name="js">Stream type (0: NIDAQ, 1: Onebox, 2: IMEC Probe)</param>
