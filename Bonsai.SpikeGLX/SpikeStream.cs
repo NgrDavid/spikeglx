@@ -61,9 +61,9 @@ namespace Bonsai.SpikeGLX
 
         /// <summary>
         /// Gets or sets the flag to convert the streamed data from a unitless quantity
-        /// to a voltage, in mV.
+        /// to a voltage, in volts.
         /// </summary>
-        [Description("Flag to convert the streamed data from a unitless quantity to a voltage, in mV.")]
+        [Description("Flag to convert the streamed data from a unitless quantity to a voltage, in volts.")]
         public bool ConvertToVoltage { get; set; } = false;
 
         /// <summary>

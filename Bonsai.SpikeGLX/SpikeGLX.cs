@@ -41,12 +41,12 @@ namespace Bonsai.SpikeGLX
 
         /// <summary>
         /// Get the constant multiple for converting a channels output between a unitless
-        /// integer and a voltage, in mV.
+        /// integer and a voltage, in volts.
         /// </summary>
         /// <param name="js">Stream type (0: NIDAQ, 1: Onebox, 2: IMEC Probe)</param>
         /// <param name="ip">Substream (0 for NIDAQ, probe number for IMEC Probe)</param>
         /// <param name="chan">Channel</param>
-        /// <returns>The multiple to convert the channel output to a voltage, in mV. </returns>
+        /// <returns>The multiple to convert the channel output to a voltage, in volts. </returns>
         /// <exception cref="SpikeGLXException"></exception>
         protected double GetStreamI16ToVolts(int js, int ip, int chan)
         {

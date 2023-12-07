@@ -61,7 +61,7 @@ namespace Bonsai.SpikeGLX
 
         /// <summary>
         /// Convert a matrix of raw data from the data stream into a matrix
-        /// of voltages, in mV.
+        /// of voltages, in volts.
         /// </summary>
         /// <param name="data">The data matrix to convert.</param>
         /// <returns>The converted data matrix.</returns>
@@ -92,13 +92,13 @@ namespace Bonsai.SpikeGLX
         /// <param name="startSample">Sample count to fetch from.</param>
         /// <param name="maxSamples">Maximum number of samples to fetch.</param>
         /// <param name="downsample">Factor by which to downsample fetched data.</param>
-        /// <param name="mV">Convert the data to a voltage, in mV.</param>
+        /// <param name="volts">Convert the data to a voltage, in volts.</param>
         /// <returns>Sample count at the beginning of the fetched data.</returns>
         /// <exception cref="SpikeGLXException"></exception>
-        public ulong Fetch(out Mat data, ulong startSample, int maxSamples, int downsample, bool mV)
+        public ulong Fetch(out Mat data, ulong startSample, int maxSamples, int downsample, bool volts)
         {
             ulong headCount = Fetch(out data, JS, IP, startSample, maxSamples, Channels, downsample);
-            if (mV) data = ConvertToVoltage(data);
+            if (volts) data = ConvertToVoltage(data);
             return headCount;
         }
 
@@ -110,13 +110,13 @@ namespace Bonsai.SpikeGLX
         /// </param>
         /// <param name="maxSamples">Maximum number of samples to fetch.</param>
         /// <param name="downsample">Factor by which to downsample fetched data.</param>
-        /// <param name="mV">Convert the data to a voltage, in mV.</param>
+        /// <param name="volts">Convert the data to a voltage, in volts.</param>
         /// <returns>Sample count at the beginning of the fetched data.</returns>
         /// <exception cref="SpikeGLXException"></exception>
-        public ulong FetchLatest(out Mat data, int maxSamples, int downsample, bool mV)
+        public ulong FetchLatest(out Mat data, int maxSamples, int downsample, bool volts)
         {
             ulong headCount = FetchLatest(out data, JS, IP, maxSamples, Channels, downsample);
-            if (mV) data = ConvertToVoltage(data);
+            if (volts) data = ConvertToVoltage(data);
             return headCount;
         }
     }
