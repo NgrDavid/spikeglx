@@ -88,8 +88,14 @@ namespace Bonsai.SpikeGLX
             using SpikeGLX connection = new(Host, Port);
 
             // Get Probe part number
-            IEnumerable<string> probeParams = connection.GetParamsImecProbe(ProbeNumber);
-            string probe_pn = probeParams.SkipWhile(x => !x.StartsWith("imDatPrb_pn"))
+            IEnumerable<string> probeParams = connection.GetGeomMap(ProbeNumber);
+
+            foreach(var probe in probeParams)
+            {
+                Console.WriteLine(probe);
+            }
+
+            string probe_pn = probeParams.Where(x => x.StartsWith("head_partNumber"))
                 .SelectMany(x => x.Split('='))
                 .Last();
 
@@ -101,12 +107,20 @@ namespace Bonsai.SpikeGLX
             }
             else
             {
-                int[] muxGroup = muxGroups.SkipWhile(x => x.Contains(muxChannel)).First();
-                channels = channels.SkipWhile(ch => !muxGroup.Contains(ch));
+                int[] muxGroup = muxGroups.Where(x => x.Contains(muxChannel)).First();
+                channels = channels.Where(ch => muxGroup.Contains(ch));
             }
             return channels;
         }
 
+        /// <summary>
+        /// Generates an observanle sequence of a single array of integers, containing channel
+        /// indicates for a SpikeFetch or SpikeStream marble.
+        /// </summary>
+        /// <returns>
+        /// A sequence of a single array of integers representing channels for
+        /// a SpikeFetch or SpikeStream marble.
+        /// </returns>
         public override IObservable<int[]> Generate()
         {
             // Parse the provided channels into a list. 
@@ -129,7 +143,8 @@ namespace Bonsai.SpikeGLX
     public static class NeuropixelsMuxGroups
     {
         // Part numbers of neuropixels probes
-        private static readonly string NP1PartNumber = "NP1100";
+        private static readonly string NP1PartNumber1 = "NP1100";
+        private static readonly string NP1PartNumber2 = "PRB_1_4_0480_1_C";
         private static readonly string NP2PartNumber = "NP2013";
 
         // Mux tables of neuropixels probes
@@ -199,7 +214,8 @@ namespace Bonsai.SpikeGLX
         // Dictionary containing the mux table for each part number
         public static readonly Dictionary<string, int[][]> MuxTables = new()
         {
-            { NP1PartNumber, NP1MuxTable },
+            { NP1PartNumber1, NP1MuxTable },
+            { NP1PartNumber2, NP1MuxTable },
             { NP2PartNumber, NP2MuxTable }
         };
 

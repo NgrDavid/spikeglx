@@ -1,4 +1,5 @@
 ﻿using System;
+using Bonsai.Expressions;
 using C_Sglx_namespace;
 using OpenCV.Net;
 
@@ -26,6 +27,38 @@ namespace Bonsai.SpikeGLX
         }
 
         /// <summary>
+        /// Internal function used to get strings from SpikeGLX after calling
+        /// a relevant function.
+        /// </summary>
+        /// <param name="nval">The number of strings to retrieve.</param>
+        /// <returns>Array of the returned strings.</returns>
+        private string[] GetStrings(int nval)
+        {
+            string[] output = new string[nval];
+            for (int i = 0; i < nval; i++)
+            {
+                output[i] = C_Sglx.cs_sglx_getstr(hSglx, i);
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Gets SpikeGLX probe geometry map for the given probe number.
+        /// </summary>
+        /// <param name="ip">Probe number.</param>
+        /// <returns>String array of geometry parameters.</returns>
+        /// <exception cref="SpikeGLXException"></exception>
+        public string[] GetGeomMap(int ip)
+        {
+            // Request parameters
+            int ok = C_Sglx.c_sglx_getGeomMap(out int nval, hSglx, ip);
+            if (ok == 0) throw new SpikeGLXException(hSglx);
+
+            // Parse parameters into a string array
+            return GetStrings(nval);
+        }
+
+        /// <summary>
         /// Gets SpikeGLX run parameters.
         /// </summary>
         /// <returns>Array of "key:value" parameters.</returns>
@@ -37,12 +70,7 @@ namespace Bonsai.SpikeGLX
             if (ok == 0) throw new SpikeGLXException(hSglx);
 
             // Parse parameters into a string array
-            string[] output = new string[nval];
-            for (int i = 0; i < nval; i++)
-            {
-                output[i] = C_Sglx.cs_sglx_getstr(hSglx, i);
-            }
-            return output;
+            return GetStrings(nval);
         }
 
         /// <summary>
@@ -57,19 +85,14 @@ namespace Bonsai.SpikeGLX
             if (ok == 0) throw new SpikeGLXException(hSglx);
 
             // Parse parameters into a string array
-            string[] output = new string[nval];
-            for (int i = 0; i < nval; i++)
-            {
-                output[i] = C_Sglx.cs_sglx_getstr(hSglx, i);
-            }
-            return output;
+            return GetStrings(nval);
         }
 
         /// <summary>
         /// Gets SpikeGLX parameters for a given IMEC probe.
         /// </summary>
         /// <param name="ip">Probe number.</param>
-        /// <returns></returns>
+        /// <returns>Array of "key:value" parameters.</returns>
         /// <exception cref="SpikeGLXException"></exception>
         public string[] GetParamsImecProbe(int ip)
         {
@@ -78,12 +101,7 @@ namespace Bonsai.SpikeGLX
             if (ok == 0) throw new SpikeGLXException(hSglx);
 
             // Parse parameters into a string array
-            string[] output = new string[nval];
-            for (int i = 0; i < nval; i++)
-            {
-                output[i] = C_Sglx.cs_sglx_getstr(hSglx, i);
-            }
-            return output;
+            return GetStrings(nval);
         }
             
         /// <summary>
