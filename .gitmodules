@@ -1,0 +1,3 @@
+[submodule "modules/SpikeGLX-CPP-SDK"]
+	path = modules/SpikeGLX-CPP-SDK
+	url = https://github.com/billkarsh/SpikeGLX-CPP-SDK.git

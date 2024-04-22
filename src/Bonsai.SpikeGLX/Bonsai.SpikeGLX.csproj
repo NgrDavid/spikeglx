@@ -33,9 +33,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>False</Optimize>
   </PropertyGroup>
-
 	<ItemGroup>
-    <Compile Include="..\SpikeGLX-CPP-SDK\C_Sglx.cs" Link="C_Sglx.cs" />
+    <Compile Include="$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\C#\C_Sglx.cs" Link="C_Sglx.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,11 +42,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE">
+    <None Include="$(ProjectDir)..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\..\README.md">
+    <None Include="$(ProjectDir)..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -61,11 +60,11 @@
 
 
 	<ItemGroup>
-		<None Include="..\SpikeGLX-CPP-SDK\*.dll" Pack="true" PackagePath="runtimes\win-x64\native" />
+		<None Include="$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\API\*.dll" Pack="true" PackagePath="runtimes\win-x64\native" />
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy /d /y &quot;$(ProjectDir)\..\SpikeGLX-CPP-SDK\*.dll&quot; &quot;$(TargetDir)&quot;" />
+		<Exec Command="xcopy /d /y &quot;$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\API\*.dll&quot; &quot;$(TargetDir)&quot;" />
 	</Target>
 
 	<ItemGroup>
