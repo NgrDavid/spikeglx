@@ -1,55 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Title>Bonsai - SpikeGLX Library</Title>
     <Description>Bonsai package for interfacing with SpikeGLX</Description>
-    <Authors>Jacob M. White</Authors>
-    <Copyright>Copyright ©  2023</Copyright>
-    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/FeeLab/Bonsai.SpikeGLX</PackageProjectUrl>
-    <PackageIcon>Bonsai.SpikeGLX.Logo.png</PackageIcon>
-    <PackageOutputPath></PackageOutputPath>
-    <PackageTags>Bonsai; Rx; SpikeGLX; Reactive; Extensions; Neuroscience; Electrophysiology; Neuropixels</PackageTags>
+
     <TargetFramework>net472</TargetFramework>
-    <Features>strict</Features>
-    <Version>0.2.0-alpha</Version>
-	<LangVersion>preview</LangVersion>
-	<PlatformTarget>x64</PlatformTarget>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<RepositoryUrl>https://github.com/FeeLab/Bonsai.SpikeGLX</RepositoryUrl>
-	<RepositoryType>git</RepositoryType>
-	<PackageReleaseNotes>Initial Release</PackageReleaseNotes>
-	<PackageLicenseFile>LICENSE</PackageLicenseFile>
-	<ApplicationIcon>Images\Bonsai.SpikeGLX.ico</ApplicationIcon>
-	<AllowUnsafeBlocks>False</AllowUnsafeBlocks>
-	<EnableNETAnalyzers>False</EnableNETAnalyzers>
-	<AnalysisLevel>none</AnalysisLevel>
-	<Platforms>AnyCPU</Platforms>
-	<NoWin32Manifest>true</NoWin32Manifest>
-	<Configurations>Debug;Release</Configurations>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>False</Optimize>
-  </PropertyGroup>
-	<ItemGroup>
+  <ItemGroup>
     <Compile Include="$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\C#\C_Sglx.cs" Link="C_Sglx.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Images\Bonsai.SpikeGLX.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="$(ProjectDir)..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="$(ProjectDir)..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -59,19 +18,12 @@
   </ItemGroup>
 
 
-	<ItemGroup>
-		<None Include="$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\API\*.dll" Pack="true" PackagePath="runtimes\win-x64\native" />
-	</ItemGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy /d /y &quot;$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\API\*.dll&quot; &quot;$(TargetDir)&quot;" />
-	</Target>
-
-	<ItemGroup>
-    <None Include="Images\Bonsai.SpikeGLX.Logo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+  <ItemGroup>
+    <None Include="$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\API\*.dll" Pack="true" PackagePath="runtimes\win-x64\native" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /d /y &quot;$(ProjectDir)..\..\modules\SpikeGLX-CPP-SDK\API\*.dll&quot; &quot;$(TargetDir)&quot;" />
+  </Target>
 
 </Project>
